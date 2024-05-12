@@ -38,7 +38,7 @@ public class SelenideTest {
     void shouldBeNotCityOnTheList() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Новый Уренгой");
-        String bookedDate = generateDate(90, "dd.MM.yyyy");
+        String bookedDate = generateDate(9, "dd.MM.yyyy");
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
         $("[data-test-id=date] input").setValue(bookedDate);
         $("[data-test-id=name] input").setValue("Лайченков Глеб");
@@ -52,7 +52,7 @@ public class SelenideTest {
     void shouldBeNotEmptyCityFields() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("");
-        String bookedDate = generateDate(90, "dd.MM.yyyy");
+        String bookedDate = generateDate(9, "dd.MM.yyyy");
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
         $("[data-test-id=date] input").setValue(bookedDate);
         $("[data-test-id=name] input").setValue("Лайченков Глеб");
@@ -66,29 +66,27 @@ public class SelenideTest {
     void shouldBeNameFieldEnteredIncorrectly() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Самара");
-        String bookedDate = generateDate(90, "dd.MM.yyyy");
+        String bookedDate = generateDate(9, "dd.MM.yyyy");
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
         $("[data-test-id=date] input").setValue(bookedDate);
         $("[data-test-id=name] input").setValue("Laichenkov Gleb");
         $("[data-test-id=phone] input").setValue("+79990000000");
         $("[data-test-id=agreement]").click();
         $("button.button").click();
-        $(byText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."))
-                .shouldBe(visible);
+        $(byText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы.")).shouldBe(visible);
     }
 
     @Test
     void shouldBePhoneFieldEnteredIncorrectly() {
         open("http://localhost:9999");
         $("[data-test-id=city] input").setValue("Самара");
-        String bookedDate = generateDate(90, "dd.MM.yyyy");
+        String bookedDate = generateDate(9, "dd.MM.yyyy");
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME));
         $("[data-test-id=date] input").setValue(bookedDate);
         $("[data-test-id=name] input").setValue("Лайченков Глеб");
         $("[data-test-id=phone] input").setValue("+7999");
         $("[data-test-id=agreement]").click();
         $("button.button").click();
-        $(byText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678."))
-                .shouldBe(visible);
+        $(byText("Телефон указан неверно. Должно быть 11 цифр, например, +79012345678.")).shouldBe(visible);
     }
 }
